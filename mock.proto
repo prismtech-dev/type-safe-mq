@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package mockproto;
+
+message MockPayload {
+  // 정수형
+  int32 width = 1;
+  int64 height = 2;
+
+  // 부동소수점
+  float confidence = 3;
+  double temperature = 4;
+
+  // 불리언
+  bool is_valid = 5;
+
+  // 문자열
+  string label = 6;
+
+  // 바이트 배열
+  bytes image_data = 7;
+
+  // 반복 (리스트)
+  repeated int32 points = 8;
+
+  // 중첩 메시지
+  message Metadata {
+    string key = 1;
+    string value = 2;
+  }
+
+  repeated Metadata tags = 9;
+
+  // enum
+  enum Status {
+    UNKNOWN = 0;
+    OK = 1;
+    FAILED = 2;
+  }
+
+  Status status = 10;
+}
