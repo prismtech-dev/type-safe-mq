@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package mockproto;
 
+option go_package = "github.com/prismtech-dev/type-safe-mq/go/tests/pb;pb";
+
 message MockPayload {
   // 정수형
   int32 width = 1;

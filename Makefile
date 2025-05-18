@@ -13,7 +13,8 @@ python:
 
 go:
 	protoc -I. \
-		--go_out=go/$(OUT_DIR) \
+		--go_out=go/$(OUT_DIR)/pb \
+		--go_opt=paths=source_relative \
 		${PROTO}
 
 all: python go

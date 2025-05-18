@@ -21,7 +21,7 @@ class Envelope(Generic[T]):
             raise TypeError(f"timestamp must be int, got {type(self.timestamp)}")
 
     @classmethod
-    def from_json(cls, data: dict[str, Any], proto_cls: Type[T]) -> "Envelope":
+    def from_json(cls, data: dict[str, Any], proto_cls: Type[T]) -> "Envelope[T]":
         """Parse message received from message queue"""
         try:
             proto = proto_cls()
@@ -36,7 +36,9 @@ class Envelope(Generic[T]):
         )
 
     @staticmethod
-    def pack(payload: T) -> "Envelope":
+    def pack(payload: T) -> "Envelope[T]":
+        if not isinstance(payload, Message):
+            raise TypeError(f"Expected protobuf Message, got {type(payload)}")
         return Envelope(
             payload=payload,
             origin=socket.gethostname(),  # current pod name (unique)

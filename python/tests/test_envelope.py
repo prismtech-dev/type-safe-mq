@@ -20,12 +20,13 @@ def test_envelope_with_test_payload():
     )
 
     # 포장
-    env = Envelope.pack(payload)
+    env: Envelope[mock_pb2.MockPayload] = Envelope.pack(payload)
     assert env.payload.width == 1920
     assert env.payload.label == "face"
 
     # dict로 직렬화 후 역직렬화
     as_dict = env.to_dict()
+    # print(as_dict)
     parsed = Envelope.from_json(as_dict, mock_pb2.MockPayload)
 
     assert parsed.payload.width == 1920
