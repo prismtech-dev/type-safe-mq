@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+type_safe_mq/__init__.py
+type_safe_mq/envelope.py
+type_safe_mq.egg-info/PKG-INFO
+type_safe_mq.egg-info/SOURCES.txt
+type_safe_mq.egg-info/dependency_links.txt
+type_safe_mq.egg-info/requires.txt
+type_safe_mq.egg-info/top_level.txt

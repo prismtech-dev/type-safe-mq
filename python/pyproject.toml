@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "type-safe-mq"
+version = "0.1.0"
+description = "Type-safe Protobuf envelope utility for message queues"
+readme = "README.md"
+requires-python = ">=3.8"
+
+authors = [
+  { name="Your Name", email="your@email.com" }
+]
+
+license = { text = "MIT" }
+
+dependencies = [
+  "protobuf>=4.0.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/prismtech-dev/type-safe-mq"
+"Source" = "https://github.com/prismtech-dev/type-safe-mq"
