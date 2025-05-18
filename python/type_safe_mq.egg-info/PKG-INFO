@@ -1,12 +1,12 @@
 Metadata-Version: 2.4
 Name: type-safe-mq
-Version: 0.1.0
+Version: 0.1.2
 Summary: Type-safe Protobuf envelope utility for message queues
-Author-email: Your Name <your@email.com>
+Author-email: drkyun <kyunn299@icloud.com>
 License: MIT
 Project-URL: Homepage, https://github.com/prismtech-dev/type-safe-mq
 Project-URL: Source, https://github.com/prismtech-dev/type-safe-mq
-Requires-Python: >=3.8
+Requires-Python: >=3.9
 Description-Content-Type: text/markdown
 Requires-Dist: protobuf>=4.0.0
 

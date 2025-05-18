@@ -1,5 +1,6 @@
 README.md
 pyproject.toml
+tests/test_envelope.py
 type_safe_mq/__init__.py
 type_safe_mq/envelope.py
 type_safe_mq.egg-info/PKG-INFO
