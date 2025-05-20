@@ -72,11 +72,7 @@ func FromJSON[T proto.Message](data map[string]any, target T) (*Envelope[T], err
 	case []byte:
 		payload = v
 	case string:
-		decoded, err := base64.StdEncoding.DecodeString(v)
-		if err != nil {
-			return nil, fmt.Errorf("failed to decode base64 payload: %w", err)
-		}
-		payload = decoded
+		payload = []byte(v)
 	default:
 		return nil, fmt.Errorf("payload type error: %T", v)
 	}
