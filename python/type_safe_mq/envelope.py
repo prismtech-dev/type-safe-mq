@@ -35,6 +35,37 @@ class Envelope(Generic[T]):
             timestamp=data["timestamp"],
         )
 
+    @classmethod
+    def from_bytes(cls, data: dict[bytes, bytes], proto_cls: Type[T]) -> "Envelope[T]":
+        """Parse raw byte-keyed message from message queue (e.g., Redis Stream)"""
+        try:
+            # 1. decode keys to str
+            decoded = {k.decode("utf-8"): v for k, v in data.items()}
+
+            # 2. extract fields
+            raw_payload = decoded["payload"]
+            origin = (
+                decoded["origin"].decode("utf-8")
+                if isinstance(decoded["origin"], bytes)
+                else decoded["origin"]
+            )
+            timestamp = (
+                int(decoded["timestamp"].decode("utf-8"))
+                if isinstance(decoded["timestamp"], bytes)
+                else int(decoded["timestamp"])
+            )
+
+            # 3. parse protobuf
+            proto = proto_cls()
+            proto.ParseFromString(raw_payload)
+
+            return cls(payload=proto, origin=origin, timestamp=timestamp)
+
+        except KeyError as e:
+            raise ValueError(f"Missing field in message: {e}")
+        except Exception as e:
+            raise ValueError("Failed to parse message from bytes") from e
+
     @staticmethod
     def pack(payload: T) -> "Envelope[T]":
         if not isinstance(payload, Message):
